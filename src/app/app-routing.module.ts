@@ -1,10 +1,49 @@
 import { NgModule } from '@angular/core';
+import { RouterModule, Routes } from '@angular/router';
+import { LoginComponent } from './login/login.component';
+import { MainComponent } from './main/main.component';
+
+import { AuthGuard } from './auth/auth.guard';
+import { JwtAuthGuard } from './auth/jwt-auth.guard';
+
+const routes: Routes = [
+  { path: '', pathMatch: 'full', redirectTo: '/login' },
+  {
+    path: 'login',
+    component: LoginComponent,
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'secret-random-number',
+//    loadChildren: './random/random.module#RandomModule',
+    loadChildren: './random/random.module',
+    canActivate: [JwtAuthGuard],
+    canLoad: [JwtAuthGuard]
+  },
+  {path: 'main', component: MainComponent },
+];
+
+@NgModule({
+  imports: [
+    RouterModule.forRoot(routes)
+  ],
+  exports: [RouterModule],
+  declarations: []
+})
+export class AppRoutingModule { }
+
+
+
+
+/*
+import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { LocalProductComponent } from './local-product/local-product.component';
 
 import { MainComponent } from './main/main.component';
 import { LoginComponent } from './login/login.component';
-//import { AuthGuard } from './auth/auth.guard';
+import { AuthGuard } from './auth/auth.guard';
+import { JwtAuthGuard } from './auth/jwt-auth.guard';
 
 const routes: Routes = [
   {path: '', redirectTo: '/main', pathMatch: 'full'},
@@ -16,6 +55,8 @@ const routes: Routes = [
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
+  declarations: []
 })
 export class AppRoutingModule { }
+*/

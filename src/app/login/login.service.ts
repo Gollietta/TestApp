@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { HttpClient, HttpResponse } from '@angular/common/http';
-import { CommonConstant } from '../CommonConstant';
 
 @Injectable({
   providedIn: 'root'
@@ -16,7 +15,7 @@ export class LoginService {
   // 失敗時の処理は今回は実装していません
   login(data: {username: string, password:string }, successUrl: string){
     // 認証情報をサーバーにpost
-    this.http.post(CommonConstant.HOST + '/auth/login', data, { observe: 'response'})
+    this.http.post('http://localhost:3000/login', data, { observe: 'response'})
     .subscribe(res => {
       this.storeToken(res); // ログイン成功時はトークンをlocalStorageに保持する
       this.router.navigate([successUrl]); // ログイン成功時のページに遷移

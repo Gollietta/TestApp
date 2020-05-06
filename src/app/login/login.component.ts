@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { AjaxService } from '../ajax.service';
-import { LoginService } from './login.service';
+import { Router } from '@angular/router';
+import { AuthService } from '../auth/auth.service';
 
 @Component({
   selector: 'app-login',
@@ -10,21 +10,36 @@ import { LoginService } from './login.service';
 })
 export class LoginComponent implements OnInit {
 
+  loginForm: FormGroup;
+
   constructor(
     private formBuilder: FormBuilder,
-    private loginService: LoginService
+    private router: Router,
+    private authService: AuthService
   ) { }
 
-  loginForm: FormGroup = this.formBuilder.group({
-    'loginId': ['', Validators.required],
-    'password': ['', [Validators.required]],
-  })
-
   ngOnInit(): void {
+    this.loginForm = this.formBuilder.group({
+      username: ['', Validators.required],
+      password: ['', Validators.required]
+    })
   }
 
-  submit(){
-    this.loginService.login(this.loginForm.value, '/main');
+  get f() { return this.loginForm.controls }
+
+  login(){
+    this.authService.login(
+      {
+        username: this.f.username.value,
+        password: this.f.password.value
+      }
+    )
+    .subscribe(success => {
+      if(success) {
+        this.router.navigate(['/main']);
+//        this.router.navigate(['/secret-random-number']);
+      }
+    });
   }
 
 }
