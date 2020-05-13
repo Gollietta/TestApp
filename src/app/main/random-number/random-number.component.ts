@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { RandomNumberService } from './random-number.service';
-import { AuthService } from '../auth/auth.service';
+import { AuthService } from '../../auth/auth.service';
 import { Router } from '@angular/router';
 
 @Component({
@@ -18,7 +18,7 @@ export class RandomNumberComponent implements OnInit {
   ngOnInit() {
     this.randomNumber = this.random.getRandomNumber();
   }
-
+/*
   logout() {
     this.authService.logout()
       .subscribe(success => {
@@ -27,5 +27,5 @@ export class RandomNumberComponent implements OnInit {
         }
       });
   }
-
+*/
 }

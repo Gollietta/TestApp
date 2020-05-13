@@ -17,7 +17,7 @@ export class AuthService{
     constructor(private http: HttpClient){}
 
     login(user: { username: string, password: string}): Observable<boolean>{
-        console.log(user);
+        //console.log(user); //TEST
         return this.http.post<any>(`${config.apiUrl}/login`, user)
         .pipe(
             tap(tokens => this.doLoginUser(user.username, tokens)),
@@ -49,6 +49,8 @@ export class AuthService{
         return this.http.post<any>(`${config.apiUrl}/refresh`, {'refreshToken': this.getRefreshToken()})
         .pipe(
             tap( (tokens: Tokens) => {
+                console.log("Need token???"); //TEST
+                console.log(tokens); //TEST
                 this.storeJwtToken(tokens.jwt);
             })
         )

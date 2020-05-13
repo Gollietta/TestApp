@@ -16,11 +16,19 @@ export class MainComponent implements OnInit {
 
   logout(){
     this.authService.logout()
-      .subscribe(success => {
+    .subscribe(success => {
         if (success) {
           this.router.navigate(['/login']);
         }
-      });
+    });
 
+  }
+
+  refresh(){
+    this.authService.refreshToken()
+    .subscribe(res => {
+      console.log("Refresh is called.");
+      console.log(res);
+    });
   }
 }

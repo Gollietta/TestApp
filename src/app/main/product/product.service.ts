@@ -9,7 +9,7 @@ const url = 'http://localhost:3000/product';
 @Injectable({
   providedIn: 'root'
 })
-export class LocalProductService {
+export class ProductService {
 
   constructor(private http: HttpClient) { }
 
