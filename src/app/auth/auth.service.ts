@@ -17,13 +17,14 @@ export class AuthService{
     constructor(private http: HttpClient){}
 
     login(user: { username: string, password: string}): Observable<boolean>{
-        //console.log(user); //TEST
+        //console.log("401?"); //TEST
         return this.http.post<any>(`${config.apiUrl}/login`, user)
         .pipe(
             tap(tokens => this.doLoginUser(user.username, tokens)),
             mapTo(true),
             catchError(error => {
                 alert(error.error);
+                console.log(error); //TEST
                 return of(false);
             })
         )
@@ -61,6 +62,7 @@ export class AuthService{
     }
 
     private doLoginUser(username: string, tokens: Tokens) {
+        console.log("doLoginUser is called.");//TEST
         this.loggedUser = username;
         this.storeTokens(tokens);
     }

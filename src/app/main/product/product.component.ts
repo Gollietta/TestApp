@@ -1,6 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
 import { ProductService } from './product.service';
 import { ProductInterface } from './product.interface';
+import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
+import { ProductAddDialogComponent } from './product-add-dialog.component';
 
 @Component({
   selector: 'app-product',
@@ -12,7 +14,24 @@ export class ProductComponent implements OnInit {
   new_product: ProductInterface;
   products: ProductInterface[];
 
-  constructor(private productService: ProductService) { }
+  constructor(private productService: ProductService, private dialog: MatDialog) { }
+
+  openProductAddDialog(){
+    const dialogConfig = new MatDialogConfig();
+
+    dialogConfig.data = {title: 'Hello World!'};
+    dialogConfig.height = '900px';
+    dialogConfig.width = '1500px';
+    dialogConfig.disableClose = true;
+    dialogConfig.autoFocus = false;
+
+    // NOTE: Must have prebuilt-themes imported in style.css or dialog will be shown at bottom of page.
+    let dialogRef = this.dialog.open(ProductAddDialogComponent, dialogConfig);
+
+    dialogRef.afterClosed().subscribe(value => {
+      console.log(`Dialog sent: ${value}`);
+    });
+  }
 
   ngOnInit(): void {
   }

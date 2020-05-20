@@ -9,6 +9,8 @@ import { AuthService } from '../auth/auth.service';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
+  status_message : string = "";
+  isDisabled: boolean;
 
   loginForm: FormGroup;
 
@@ -35,9 +37,13 @@ export class LoginComponent implements OnInit {
       }
     )
     .subscribe(success => {
+      console.log("Observable is retuend from authService.login");//TEST
       if(success) {
         this.router.navigate(['/main']);
-//        this.router.navigate(['/secret-random-number']);
+      }
+      else{
+        console.log("Login failed.");//TEST
+        this.status_message = "Login failed."
       }
     });
   }
