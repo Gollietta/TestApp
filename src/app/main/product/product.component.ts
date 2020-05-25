@@ -3,6 +3,7 @@ import { ProductService } from './product.service';
 import { ProductInterface } from './product.interface';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { ProductAddDialogComponent } from './product-add-dialog.component';
+import { analyzeAndValidateNgModules } from '@angular/compiler';
 
 @Component({
   selector: 'app-product',
@@ -18,6 +19,7 @@ export class ProductComponent implements OnInit {
 
   openProductAddDialog(){
     const dialogConfig = new MatDialogConfig();
+    let returned_data: any;
 
     dialogConfig.data = {title: 'Hello World!'};
     dialogConfig.height = '900px';
@@ -29,8 +31,16 @@ export class ProductComponent implements OnInit {
     let dialogRef = this.dialog.open(ProductAddDialogComponent, dialogConfig);
 
     dialogRef.afterClosed().subscribe(value => {
-      console.log(`Dialog sent: ${value}`);
+      if(!value){
+        console.log("Cancel button is clicked.");//TEST
+      }
+      else{
+        console.log("Save button is clicked.");//TEST
+        console.log(value);//TEST
+        this.postProduct(value.product_id, value.product_name);
+      }
     });
+
   }
 
   ngOnInit(): void {

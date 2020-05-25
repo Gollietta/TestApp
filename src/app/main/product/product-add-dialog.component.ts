@@ -8,6 +8,7 @@ import {FormBuilder, Validators, FormGroup} from '@angular/forms';
     styleUrls: ['./product-add-dialog.component.css']
 })
 export class ProductAddDialogComponent implements OnInit{
+    error_message: string = "";
 
     constructor(
         public dialogRef: MatDialogRef<ProductAddDialogComponent>,
@@ -18,8 +19,14 @@ export class ProductAddDialogComponent implements OnInit{
 
     }
 
-    save(){
-        this.dialogRef.close({somedata: 1234});
+    save(product_id: string, product_name: string){
+        if(!product_id || !product_name){
+            console.log("Product ID is blank.");//TEST
+            this.error_message = "Please input both Product ID and Product Name.";
+        }
+        else{
+            this.dialogRef.close({'product_id': product_id, 'product_name': product_name});
+        }
     }
 
     cancel(){

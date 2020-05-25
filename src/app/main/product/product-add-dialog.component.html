@@ -1,14 +1,16 @@
 <div style="padding: 10px; margin-bottom: 10px; border: 1px solid #333333;">
 
-<h2 mat-dialog-title>Header</h2>
+<h2 mat-dialog-title>Add Product</h2>
 
 
 <mat-dialog-content>
-    <p> Place content here </p>
+    <div>Product ID<input #productid id="product-id"></div>
+    <div>Product Name<input #productname id="product-name"></div>
+    <p>{{error_message}}</p>
 </mat-dialog-content>
 
 <mat-dialog-actions>
-    <button class="mat-raised-button" (click)="save()">Save</button>
+    <button class="mat-raised-button" (click)="save(productid.value, productname.value)">Save</button>
     <button class="mat-raised-button" (click)="cancel()">Cancel</button>
 </mat-dialog-actions>
 
