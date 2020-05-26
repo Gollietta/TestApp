@@ -19,7 +19,7 @@
       <tr *ngFor="let prod of products">
         <td>{{prod.product_id}}</td>
         <td>{{prod.product_name}}</td>
-        <td><button (click)="editProduct(prod._id)">編集</button></td>
+        <td><button (click)="openProductEditDialog(prod._id, prod.product_id, prod.product_name)">編集</button></td>
         <td><button (click)="openProductDeleteDialog(prod._id, prod.product_id, prod.product_name)">削除</button></td>
       </tr>
     </tbody>

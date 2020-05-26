@@ -9,10 +9,11 @@ import { SettingComponent } from './setting/setting.component';
 
 import { MatDialogModule } from '@angular/material/dialog';
 import { ProductDeleteDialogComponent } from './product/product-delete-dialog.component';
+import { ProductEditDialogComponent } from './product/product-edit-dialog.component';
 
 
 @NgModule({
-  declarations: [ MainComponent, ProductComponent, SettingComponent, ProductAddDialogComponent, ProductDeleteDialogComponent ],
+  declarations: [ MainComponent, ProductComponent, SettingComponent, ProductAddDialogComponent, ProductDeleteDialogComponent, ProductEditDialogComponent ],
   imports: [
     CommonModule,
     MainRoutingModule,

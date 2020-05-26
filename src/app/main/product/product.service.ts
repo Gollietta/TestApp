@@ -28,8 +28,15 @@ export class ProductService {
     );
   }
 
-  public postProduct(new_product: ProductInterface): Observable<ProductInterface>{
+  public addProduct(new_product: ProductInterface): Observable<ProductInterface>{
     return this.http.post<ProductInterface>(url+'/post', new_product)
+    .pipe(
+      catchError(this.handleError)
+    )
+  }
+
+  public editProduct(_id: string, product: ProductInterface): Observable<ProductInterface>{
+    return this.http.put<ProductInterface>(url+'/edit?_id='+_id, product)
     .pipe(
       catchError(this.handleError)
     )
