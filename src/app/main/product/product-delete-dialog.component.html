@@ -4,14 +4,16 @@
     
     
     <mat-dialog-content>
-        <div>Product ID:</div>
-        <div>Product Name:</div>
+        <div>Product ID:{{data.product_id}}</div>
+        <div>Product Name:{{data.product_name}}</div>
     </mat-dialog-content>
     
     <mat-dialog-actions>
-        <p>Are you sure to delete?</p>
-        <button class="mat-raised-button" (click)="delete()">Delete</button>
-        <button class="mat-raised-button" (click)="cancel()">Cancel</button>
+        <div>Are you sure to delete?</div>
+        <div>
+            <button class="mat-raised-button" (click)="delete()">Delete</button>
+            <button class="mat-raised-button" (click)="cancel()">Cancel</button>
+        </div>
     </mat-dialog-actions>
     
 </div>

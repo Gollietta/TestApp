@@ -2,8 +2,8 @@
 
 <p>product-component</p>
 
-<input #productid id="product-id">
-<button (click)="getProducts()">製品取得</button>
+<input #keyword id="keyword">
+<button (click)="filterProducts(keyword.value)">フィルター</button>
 <!--
 <div *ngIf="products">
     <ul>
@@ -20,7 +20,7 @@
         <td>{{prod.product_id}}</td>
         <td>{{prod.product_name}}</td>
         <td><button (click)="editProduct(prod._id)">編集</button></td>
-        <td><button (click)="editProduct(prod._id)">削除</button></td>
+        <td><button (click)="openProductDeleteDialog(prod._id, prod.product_id, prod.product_name)">削除</button></td>
       </tr>
     </tbody>
   </table>

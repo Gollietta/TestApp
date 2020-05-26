@@ -13,14 +13,14 @@ export class ProductService {
 
   constructor(private http: HttpClient) { }
 
-  public getProducts(): Observable<ProductInterface[]>{
-    return this.http.get<ProductInterface[]>(url, {})
+  public searchProducts(keyword: string): Observable<ProductInterface[]>{
+    return this.http.get<ProductInterface[]>(url+"/search?keyword="+keyword, {})
     .pipe(
       catchError(this.handleError)
     );
   }
 
-  public getProduct(in_productid: string): Observable<ProductInterface>{
+  public getProduct(product_id: string): Observable<ProductInterface>{
     console.log(url);
     return this.http.get<ProductInterface>(url, {})
     .pipe(
@@ -30,6 +30,13 @@ export class ProductService {
 
   public postProduct(new_product: ProductInterface): Observable<ProductInterface>{
     return this.http.post<ProductInterface>(url+'/post', new_product)
+    .pipe(
+      catchError(this.handleError)
+    )
+  }
+
+  public deleteProduct(_id: string): Observable<ProductInterface>{
+    return this.http.delete<ProductInterface>(url+'/delete?_id='+_id)
     .pipe(
       catchError(this.handleError)
     )
