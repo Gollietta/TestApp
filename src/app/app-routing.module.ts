@@ -16,12 +16,6 @@ const routes: Routes = [
     canActivate: [AuthGuard]
   },
   {
-    path: 'secret-random-number',
-    loadChildren: './random/random.module#RandomModule',
-    canActivate: [JwtAuthGuard],
-    canLoad: [JwtAuthGuard]
-  },
-  {
     //path:'main', loadChildren: './main/main.module#MainModule'
     path:'main', loadChildren: () => MainModule,
     canActivate: [JwtAuthGuard],
