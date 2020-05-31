@@ -3,8 +3,10 @@ import { HttpClient, HttpParams, HttpHeaders, HttpErrorResponse } from '@angular
 import { Observable, of, throwError } from 'rxjs';
 import { catchError, tap } from 'rxjs/operators';
 import { ProductInterface } from './product.interface';
+import { config } from '../../config';
 
-const url = 'http://localhost:3000/product';
+const url = config.apiUrl;
+//const url = 'http://localhost:3000/product';
 
 @Injectable({
   providedIn: 'root'
