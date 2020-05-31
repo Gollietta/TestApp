@@ -5,7 +5,7 @@ import { catchError, tap } from 'rxjs/operators';
 import { ProductInterface } from './product.interface';
 import { config } from '../../config';
 
-const url = config.apiUrl;
+const url = config.apiUrl+'/product';
 //const url = 'http://localhost:3000/product';
 
 @Injectable({
