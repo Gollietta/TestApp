@@ -1,4 +1,25 @@
+<div style="padding: 10px; margin-bottom: 10px; border: 1px solid #333333;">
+
+<p>login-component</p>
+<img id="topimage" src="/assets/shimanto.jpg">
+
+<form [formGroup]="loginForm" (ngSubmit)="login()">
+    <div>
+        <label>ユーザーネーム</label><br><input type="text" formControlName="username">
+    </div>
+    <div>
+        <label>パスワード</label><br><input type="password" formControlName="password">
+    </div>
+    <br>
+    <button [disabled]="loginForm.invalid||isDisabled">ログイン</button>
+</form>
+<p>{{status_message}}</p>
+
+</div>
 <!--
+    <label>ユーザーネーム</label><br><input type="text" formControlName="username">
+    <label>パスワード</label><br><input type="password" formControlName="password">
+    <button [disabled]="loginForm.invalid">ログイン</button>
 <div class="header center">Login</div>
 
 <form [formGroup]="loginForm" (ngSubmit)="login()">
@@ -15,17 +36,3 @@
     </div>
 </form>
 -->
-
-
-<form [formGroup]="loginForm" (ngSubmit)="login()">
-    <div>
-        <label>ユーザーネーム</label><input type="text" formControlName="username">
-    </div>
-    <div>
-        <label>パスワード</label><input type="password" formControlName="password">
-    </div>
-    <p>{{status_message}}</p>
-    <div>
-        <button [disabled]="loginForm.invalid">ログイン</button>
-    </div>
-</form>

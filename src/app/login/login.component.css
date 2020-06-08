@@ -1,7 +1,8 @@
+/*
 :host{
     text-align: center;
     display: block;
-    margin-top: 30%;
+    margin-top: 20%;
 }
 
 form{
@@ -15,4 +16,10 @@ mat-form-field{
 
 .actions{
     text-align: center;
+}
+*/
+
+#topimage{
+    width:300px;
+    height:auto;
 }

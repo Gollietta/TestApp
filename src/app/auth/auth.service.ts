@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpResponse, HttpErrorResponse } from '@angular/common/http';
 import { of, Observable } from 'rxjs';
-import { catchError, mapTo, tap } from 'rxjs/operators';
+import { catchError, map, mapTo, tap } from 'rxjs/operators';
 import { config } from '../config';
 import { Tokens } from './tokens';
 
@@ -16,16 +16,16 @@ export class AuthService{
 
     constructor(private http: HttpClient){}
 
-    login(user: { username: string, password: string}): Observable<boolean>{
-        //console.log("401?"); //TEST
-        return this.http.post<any>(`${config.apiUrl}/login`, user)
+    login(user: { username: string, password: string}): Observable<number>{
+        return this.http.post<any>(`${config.apiUrl}/login`, user, { observe: 'response' })
         .pipe(
-            tap(tokens => this.doLoginUser(user.username, tokens)),
-            mapTo(true),
-            catchError(error => {
-                alert(error.error);
+//            tap((res: HttpResponse<any>) => this.doLoginUser(user.username, tokens)),
+            map((res: HttpResponse<any>) => this.doLoginUser(res.status, user.username, res.body)),
+            //mapTo(true),
+            catchError((error: HttpErrorResponse) => {
+                //alert(error.error);
                 console.log(error); //TEST
-                return of(false);
+                return of(error.status);
             })
         )
     }
@@ -61,10 +61,13 @@ export class AuthService{
         return localStorage.getItem(this.JWT_TOKEN);
     }
 
-    private doLoginUser(username: string, tokens: Tokens) {
+    private doLoginUser(code: number, username: string, tokens: Tokens): number {
         console.log("doLoginUser is called.");//TEST
+        console.log("Status code was "+code);//TEST
+        console.log(tokens);//TEST
         this.loggedUser = username;
         this.storeTokens(tokens);
+        return code;
     }
 
     private doLogoutUser() {

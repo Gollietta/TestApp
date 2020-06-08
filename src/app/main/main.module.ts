@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MainRoutingModule } from './main-routing.module';
 
+
 import { MainComponent } from './main.component';
 import { ProductComponent } from './product/product.component';
 import { ProductAddDialogComponent } from './product/product-add-dialog.component';

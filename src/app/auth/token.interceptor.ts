@@ -3,6 +3,7 @@ import { HttpRequest, HttpHandler, HttpEvent, HttpInterceptor, HttpErrorResponse
 import { AuthService } from './auth.service';
 import { Observable, throwError, BehaviorSubject } from 'rxjs';
 import { catchError, filter, take, switchMap } from 'rxjs/operators';
+import { config } from '../config';
 
 // Taken from "https://www.youtube.com/watch?v=F1GUjHPpCLA" by Angular Academy
 
@@ -19,7 +20,7 @@ export class TokenInterceptor implements HttpInterceptor{
         }
 
         return next.handle(request).pipe(catchError(error => {
-            if(error instanceof HttpErrorResponse && error.status === 401){
+            if(error instanceof HttpErrorResponse && error.status === 401 && error.url !== `${config.apiUrl}/login`){
                 return this.handle401Error(request, next);
             }
             else{
@@ -35,6 +36,7 @@ export class TokenInterceptor implements HttpInterceptor{
     }
 
     private handle401Error(request: HttpRequest<any>, next: HttpHandler){
+        console.log("handle401Error is called.");//TEST
         if(!this.isRefreshing) {
             this.isRefreshing = true;
             this.refreshTokenSubject.next(null);
