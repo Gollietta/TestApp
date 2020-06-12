@@ -1,0 +1,22 @@
+<div style="padding: 10px; margin-bottom: 10px; border: 1px solid #333333;">
+
+<p>grid-dialog-component</p>
+
+<ag-grid-angular
+    #agGridDetail
+    style="width: 500px; height: 500px;"
+    class="ag-theme-alpine"
+    [rowData]="selectedRowData"
+    [columnDefs]="columnDefs"
+    [enableColResize]="true"
+    rowSelection="multiple"
+    suppressRowClickSelection="true"
+    >
+</ag-grid-angular>
+
+<mat-dialog-actions>
+    <button class="mat-raised-button" (click)="save()">Save</button>
+    <button class="mat-raised-button" (click)="cancel()">Cancel</button>
+</mat-dialog-actions>
+
+</div>

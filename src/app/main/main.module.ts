@@ -11,15 +11,18 @@ import { SettingComponent } from './setting/setting.component';
 import { MatDialogModule } from '@angular/material/dialog';
 import { ProductDeleteDialogComponent } from './product/product-delete-dialog.component';
 import { ProductEditDialogComponent } from './product/product-edit-dialog.component';
+import { GridtableComponent } from './gridtable/gridtable.component';
 
+import { AgGridModule } from 'ag-grid-angular';
+import { GridDialogComponent } from './gridtable/grid-dialog.component';
 
 @NgModule({
-  declarations: [ MainComponent, ProductComponent, SettingComponent, ProductAddDialogComponent, ProductDeleteDialogComponent, ProductEditDialogComponent ],
+  declarations: [ MainComponent, ProductComponent, SettingComponent, ProductAddDialogComponent, ProductDeleteDialogComponent, ProductEditDialogComponent, GridtableComponent, GridDialogComponent ],
   imports: [
     CommonModule,
     MainRoutingModule,
-    MatDialogModule
+    MatDialogModule,
+    AgGridModule.withComponents([])
   ],
-  //entryComponents: [ProductAddDialogComponent]
 })
 export class MainModule { }

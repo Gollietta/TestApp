@@ -1,0 +1,17 @@
+<div style="padding: 10px; margin-bottom: 10px; border: 1px solid #333333;">
+<p>gridtable-component</p>
+
+<ag-grid-angular
+    #agGrid
+    style="width: 500px; height: 500px;"
+    class="ag-theme-alpine"
+    [rowData]="rowData"
+    [columnDefs]="columnDefs"
+    [enableColResize]="true"
+    rowSelection="multiple"
+    suppressRowClickSelection="true"
+    (selectionChanged)="onSelectionChanged($event)"
+    >
+</ag-grid-angular>
+<button id="btn_grid_detail" (click)="openGridDialog()">詳細</button>
+</div>

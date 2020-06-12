@@ -5,7 +5,7 @@ import {FormBuilder, Validators, FormGroup} from '@angular/forms';
 @Component({
     selector: 'product-add-dialog',
     templateUrl: './product-add-dialog.component.html',
-    styleUrls: ['./product-add-dialog.component.css']
+    styleUrls: ['./product-add-dialog.component.scss']
 })
 export class ProductAddDialogComponent implements OnInit{
     error_message: string = "";
