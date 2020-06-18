@@ -21,16 +21,21 @@ export class GridDialogComponent implements OnInit {
   constructor(
     public dialogRef: MatDialogRef<GridDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public selectedRowData: any
-  ) { }
+  ) { 
+    console.log("Showing received data.");//TEST
+    console.log(selectedRowData);//TEST
+    //api.setRowData(selectedRowData);
+  }
 
   ngOnInit(): void {
   }
 
   save(){
-    this.dialogRef.close({});
+    this.dialogRef.close(this.selectedRowData);
   }
 
   cancel(){
+      //console.log(this.selectedRowData);
       this.dialogRef.close();
   }
 

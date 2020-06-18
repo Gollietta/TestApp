@@ -72,6 +72,7 @@ export class GridtableComponent implements OnInit {
       else{
 
       }
+      this.agGrid.api.setRowData(this.rowData);
     })
 
   }
