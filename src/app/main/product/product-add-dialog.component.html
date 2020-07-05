@@ -3,21 +3,37 @@
 <h2 mat-dialog-title>Add Product</h2>
 
 
-<mat-dialog-content>
-    <div>Product ID<input #productid id="product-id"></div>
-    <div>Product Name<input #productname id="product-name"></div>
+<form [formGroup]="addForm" (ngSubmit)="save()">
+    <mat-dialog-content>
+        <div>
+            <label>company<input type="text" formControlName="company"></label><br>
+            <label>product_id<input type="text" formControlName="product_id"></label><br>
+            <label>product_name<input type="text" formControlName="product_name"></label><br>
+            <label>quantity<input type="text" formControlName="quantity"></label><br>
+            <label>price_usd<input type="text" formControlName="price_usd"></label><br>
+            <label>price_jpy<input type="text" formControlName="price_jpy"></label><br>
+            <label>note<input type="text" formControlName="note"></label><br>
+            <label>hidden<input type="checkbox" formControlName="hidden"></label><br>
+        </div>
+
     <p>{{error_message}}</p>
-</mat-dialog-content>
+    </mat-dialog-content>
 
-<mat-dialog-actions>
-    <button class="mat-raised-button" (click)="save(productid.value, productname.value)">Save</button>
-    <button class="mat-raised-button" (click)="cancel()">Cancel</button>
-</mat-dialog-actions>
-
+    <mat-dialog-actions>
+        <button>Save</button><button type="button" (click)="cancel()">Cancel</button>
+    </mat-dialog-actions>
+    <br>
+</form>
 </div>
 
 <!--
-<h2 mat-dialog-title>{{description}}</h2>
+    <button [disabled]="addForm.invalid">Save</button><button type="button" (click)="cancel()">Cancel</button>
+
+    <button class="mat-raised-button" (click)="save(productid.value, productname.value)">Save</button>
+    <button class="mat-raised-button" (click)="cancel()">Cancel</button>
+
+
+    <h2 mat-dialog-title>{{description}}</h2>
 
 <mat-dialog-content [formGroup]="form">
 

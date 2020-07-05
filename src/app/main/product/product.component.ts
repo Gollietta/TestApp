@@ -36,14 +36,14 @@ export class ProductComponent implements OnInit {
     // NOTE: Must have prebuilt-themes imported in style.css or dialog will be shown at bottom of page.
     let dialogRef = this.dialog.open(ProductAddDialogComponent, dialogConfig);
 
-    dialogRef.afterClosed().subscribe(value => {
-      if(!value){
+    dialogRef.afterClosed().subscribe(new_product => {
+      if(!new_product){
         console.log("Cancel button is clicked.");//TEST
       }
       else{
         console.log("Save button is clicked.");//TEST
-        console.log(value);//TEST
-        this.addProduct(value.product_id, value.product_name);
+        console.log(new_product);//TEST
+        this.addProduct(new_product);
       }
     });
 
@@ -62,14 +62,14 @@ export class ProductComponent implements OnInit {
     // NOTE: Must have prebuilt-themes imported in style.css or dialog will be shown at bottom of page.
     let dialogRef = this.dialog.open(ProductEditDialogComponent, dialogConfig);
 
-    dialogRef.afterClosed().subscribe(value => {
-      if(!value){
+    dialogRef.afterClosed().subscribe(edited_product => {
+      if(!edited_product){
         console.log("Cancel button is clicked.");//TEST
       }
       else{
         //console.log("Save button is clicked.");//TEST
         //console.log(value);//TEST
-        this.editProduct(_id, value.product_id, value.product_name);
+        this.editProduct(_id, edited_product);
         
       }
     });
@@ -122,18 +122,16 @@ export class ProductComponent implements OnInit {
 
   }
 
-  addProduct(product_id: string, product_name: string): void{
-    this.new_product = {product_id, product_name};
-    console.log(this.new_product);
-    this.productService.addProduct(this.new_product)
+  addProduct(new_product :ProductInterface): void{
+    console.log(new_product);
+    this.productService.addProduct(new_product)
     .subscribe(response => {
       console.log(response);
       this.searchProducts(this.recent_keyword);
     });
   }
 
-  editProduct(_id: string, product_id: string, product_name:string): void{
-    let edited_product: ProductInterface = {product_id, product_name}; 
+  editProduct(_id: string, edited_product: ProductInterface): void{
     this.productService.editProduct(_id, edited_product)
     .subscribe(response => {
       console.log(response);//TEST

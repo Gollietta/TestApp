@@ -14,8 +14,16 @@ export class GridtableComponent implements OnInit {
   @ViewChild('agGrid') agGrid: AgGridAngular;
 
   columnDefs = [
-    {headerName: 'PRODUCT_ID', field: 'product_id', sortable: true, filter: true, checkboxSelection: true},
+    {headerName: 'COMPANY', field: 'company', sortable: true, filter: true, checkboxSelection: true},
+    {headerName: 'PRODUCT_ID', field: 'product_id', sortable: true, filter: true},
     {headerName: 'PRODUCT_NAME', field: 'product_name', sortable: true, filter: true, editable: false},
+    {headerName: 'QTY', field: 'quantity', sortable: true, filter: true},
+    {headerName: 'USD', field: 'price_usd', sortable: true, filter: true},
+    {headerName: 'JPY', field: 'price_jpy', sortable: true, filter: true},
+    {headerName: 'NOTE', field: 'note', sortable: true, filter: true},
+    {headerName: 'HIDDEN', field: 'hidden', sortable: true, filter: true},
+    {headerName: 'ADDED', field: 'date_added', sortable: true, filter: true},
+    {headerName: 'UPDATED', field: 'date_updated', sortable: true, filter: true},
     
   ];
 

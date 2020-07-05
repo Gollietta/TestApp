@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MainRoutingModule } from './main-routing.module';
-
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { MainComponent } from './main.component';
 import { ProductComponent } from './product/product.component';
@@ -21,6 +21,8 @@ import { GridDialogComponent } from './gridtable/grid-dialog.component';
   imports: [
     CommonModule,
     MainRoutingModule,
+    FormsModule,
+    ReactiveFormsModule,
     MatDialogModule,
     AgGridModule.withComponents([])
   ],

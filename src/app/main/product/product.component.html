@@ -13,12 +13,21 @@
 -->
 <table class="table">
     <thead>
-      <tr><th>PRODUCT_ID</th><th>PRODUCT_NAME</th><th>
+      <tr><th>COMPANY</th><th>PRODUCT_ID</th><th>PRODUCT_NAME</th>
+          <th>QTY</th><th>USD</th><th>JPY</th><th>NOTE</th><th>HIDDEN</th><th>ADDED</th><th>UPDATED</th><th>
     </thead>
     <tbody>
       <tr *ngFor="let prod of products">
+        <td>{{prod.company}}</td>
         <td>{{prod.product_id}}</td>
         <td>{{prod.product_name}}</td>
+        <td>{{prod.quantity}}</td>
+        <td>{{prod.price_usd}}</td>
+        <td>{{prod.price_jpy}}</td>
+        <td>{{prod.note}}</td>
+        <td>{{prod.hidden}}</td>
+        <td>{{prod.date_added}}</td>
+        <td>{{prod.date_updated}}</td>
         <td><button (click)="openProductEditDialog(prod._id, prod.product_id, prod.product_name)">編集</button></td>
         <td><button (click)="openProductDeleteDialog(prod._id, prod.product_id, prod.product_name)">削除</button></td>
       </tr>
